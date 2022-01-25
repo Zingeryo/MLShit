@@ -162,3 +162,15 @@ my_model.fit(X_train, y_train,
 ##filling missing values with mean
 
 train_data["Age"] = train_data["Age"].replace(np.NaN, train_data["Age"].mean())
+
+###############################################################################################
+
+##splitting cell with separator into multiple rows 
+
+s = movie_data.drop('genres', axis=1).join(movie_data['genres'].str.split('|', expand=True).stack().reset_index(level=1, drop=True).rename('genre'))
+
+###############################################################################################
+
+##create a column from substring
+
+movie_data['year'] = movie_data['release_date'].astype('str').str[:4]
