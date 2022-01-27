@@ -173,4 +173,25 @@ s = movie_data.drop('genres', axis=1).join(movie_data['genres'].str.split('|', e
 
 ##create a column from substring
 
-movie_data['year'] = movie_data['release_date'].astype('str').str[:4]
+df['year'] = df['release_date'].astype('str').str[:4]
+
+###############################################################################################
+
+##how to loc
+
+df.loc[df['director_name'] == 'Steven Spielberg'] ##its that simple, huh
+
+###############################################################################################
+
+##renaming a column
+
+df.rename(columns = {'index' : 'id'}, inplace = True)
+
+
+###############################################################################################
+
+##detecting dupes in df
+
+pd.concat(g for _, g in df.groupby("id") if len(g) > 1)
+
+###############################################################################################
