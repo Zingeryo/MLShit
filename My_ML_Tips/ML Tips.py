@@ -185,8 +185,7 @@ df.loc[df['director_name'] == 'Steven Spielberg'] ##its that simple, huh
 
 ##renaming a column
 
-df.rename(columns = {'index' : 'id'}, inplace = True)
-
+df.rename(columns = {'what' : 'to'}, inplace = True)
 
 ###############################################################################################
 
@@ -195,3 +194,22 @@ df.rename(columns = {'index' : 'id'}, inplace = True)
 pd.concat(g for _, g in df.groupby("id") if len(g) > 1)
 
 ###############################################################################################
+
+##drop rows thas contains something     ~ is not
+
+df = df[~df['your column'].isin(['list of strings'])]
+
+df = df[~df.Column.str.contains("something", na = False)] 
+
+###############################################################################################
+
+##renaming files in folder
+
+folder = "xyz"
+for count, filename in enumerate(os.listdir(folder)):
+    dst = f"Hostel {str(count)}.jpg"
+    src =f"{folder}/{filename}"  # foldername/filename, if .py file is outside folder
+    dst =f"{folder}/{dst}"
+    # rename() function will
+    # rename all the files
+    os.rename(src, dst)
